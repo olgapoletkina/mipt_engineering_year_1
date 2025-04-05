@@ -5,12 +5,10 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
-# ✅ Replace with your actual tokens (already in use here)
 TELEGRAM_BOT_TOKEN = "7908556401:AAHUjWAGSy72YmqARssxrfrLsP5NcBM1UkI"
 OAUTH_TOKEN = "y0__xDUoO2kqveAAhjB3RMgzce-2xJywB-QwLpqs67Pg-LUauO_dMaZOQ"
 FOLDER_ID = "b1g7d34r5kdavqia9fed"
 
-# 📦 Logging user actions
 def log_user_action(user_id, action):
     log_path = "data/user_stats.csv"
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -18,7 +16,6 @@ def log_user_action(user_id, action):
         writer = csv.writer(file)
         writer.writerow([user_id, datetime.now().isoformat(), action])
 
-# 🔐 Getting token
 def get_iam_token():
     response = requests.post(
         'https://iam.api.cloud.yandex.net/iam/v1/tokens',
@@ -27,7 +24,6 @@ def get_iam_token():
     response.raise_for_status()
     return response.json()['iamToken']
 
-# 🚀 Handlers
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.message.from_user.id
     log_user_action(user_id, "/start")
@@ -71,7 +67,6 @@ async def process_message(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     
     await update.message.reply_text(answer)
 
-# 🧠 Entry point
 def main() -> None:
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
