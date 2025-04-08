@@ -1,0 +1,28 @@
+# start connection
+yc compute ssh --id epd41gmpttghuod4cjn9
+
+# navigate to bot
+cd ~/bot_yandexgpt
+
+# check files in bot, check logs
+ls data/
+cat data/user_stats.csv
+
+# activate venv
+source venv/bin/activate
+
+# run bot inside venv!
+python3 bot_ya.py
+
+# check logs while in venv
+cd ~/bot_yandexgpt
+cat data/user_stats.csv
+
+# run permanently
+nohup python3 bot_ya.py &
+
+# to stop the bot
+ps aux | grep bot_ya.py
+kill <PID>
+
+

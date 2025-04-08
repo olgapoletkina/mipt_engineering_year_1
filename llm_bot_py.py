@@ -28,18 +28,15 @@ def get_iam_token():
     response.raise_for_status()
     return response.json()['iamToken']
 
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.message.from_user.id
     log_user_action(user_id, "/start")
     await update.message.reply_text("Привет! Я — Telegram-бот с YandexGPT!")
 
-
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.message.from_user.id
     log_user_action(user_id, "/help")
     await update.message.reply_text("Просто напиши мне сообщение, и я постараюсь ответить 🤖")
-
 
 async def process_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.message.from_user.id
@@ -75,7 +72,6 @@ async def process_message(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                      .get('text', "🤖 Извините, я не смог сгенерировать ответ.")
 
     await update.message.reply_text(answer)
-
 
 def main() -> None:
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
