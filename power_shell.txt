@@ -13,6 +13,7 @@ source venv/bin/activate
 
 # run bot inside venv!
 python3 bot_ya.py
+python3 upload_stats_to_disk.py
 
 # check logs while in venv
 cd ~/bot_yandexgpt
@@ -25,4 +26,5 @@ nohup python3 bot_ya.py &
 ps aux | grep bot_ya.py
 kill <PID>
 
-
+# new version of file
+scp "C:\Users\olgap\OneDrive\MIPT_Master\Engineering\upload_stats_to_disk.py" poletkinaov@158.160.94.75:~/bot_yandexgpt/
